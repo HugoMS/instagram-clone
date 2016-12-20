@@ -77,6 +77,7 @@ class ViewController: UIViewController {
                     }else {
                     
                         print("User Sign Up")
+                        self.performSegue(withIdentifier: "showUserTable", sender: self)
                     }
                 })
                 
@@ -105,7 +106,8 @@ class ViewController: UIViewController {
                     
                     } else {
                     
-                    print("Log In")
+                        print("Log In")
+                        self.performSegue(withIdentifier: "showUserTable", sender: self)
                     }
                 })
             }
@@ -141,6 +143,18 @@ class ViewController: UIViewController {
             signupMode = true
 
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        
+        if PFUser.current() != nil {
+            
+            performSegue(withIdentifier: "showUserTable", sender: self)
+        }
+        
+        self.navigationController?.navigationBar.isHidden =  true
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
